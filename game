@@ -1,0 +1,185 @@
+import sys
+import print_stuff
+
+print()
+print("Welcome to the game Tic-Tac-Toe!")
+print("This is your field.")
+
+x = [[' ','1', '2', '3'], ['1','_', '_', '_'], ['2','_', '_', '_'],['3','_', '_', '_']]
+
+print_stuff.print_field(x)
+
+tie_counter = 0
+
+for turn_counter in range(1,10):
+    print("This is round", turn_counter, end="")
+    print(".")
+
+    if turn_counter % 2 == 1:
+        print("Player ONE make a move.")
+        print()
+
+        while True:
+
+            while True:
+                print("Enter X position (1-3):")
+                try:
+                    y_axis = int(input())
+                except ValueError:
+                    y_axis = 0
+
+                if y_axis == 1 or y_axis == 2 or y_axis == 3:
+                    break
+                print("That was not correct X position! Try again!")
+
+            while True:
+                print("Enter Y position (1-3):")
+                try:
+                    x_axis = int(input())
+                except ValueError:
+                    x_axis = 0
+
+                if x_axis == 1 or x_axis == 2 or x_axis == 3:
+                    break   
+                print("That was not correct X position! Try again!")
+            
+            if x[x_axis][y_axis] == '_':
+                x[x_axis][y_axis] = 'x'
+                break
+            print()
+            print("This position has already been taken, choose another position.")
+            print_stuff.print_field(x)
+
+        print_stuff.print_field(x)
+
+        # victory logic for columns -----------------------------------
+        if x[1][1] == "x" and x[2][1] == "x" and x[3][1] == "x":
+            print("Player ONE won.")
+            tie_counter = 1
+            break
+        
+        elif x[1][2] == "x" and x[2][2] == "x" and x[3][2] == "x":
+            print("Player ONE won.")
+            tie_counter = 1
+            break
+
+        elif x[1][3] == "x" and x[2][3] == "x" and x[3][3] == "x":
+            print("Player ONE won.")
+            tie_counter = 1
+            break
+
+        # victory logic for rows --------------------------------------
+        if x[1][1] == "x" and x[1][2] == "x" and x[1][3] == "x":
+            print("Player ONE won.")
+            tie_counter = 1
+            break
+        
+        elif x[2][1] == "x" and x[2][2] == "x" and x[2][3] == "x":
+            print("Player ONE won.")
+            tie_counter = 1
+            break
+
+        elif x[3][1] == "x" and x[3][2] == "x" and x[3][3] == "x":
+            print("Player ONE won.")
+            tie_counter = 1
+            break
+
+        # victory logic for diagonal ---------------------------------
+        if x[1][1] == "x" and x[2][2] == "x" and x[3][3] == "x":
+            print("Player ONE won.")
+            tie_counter = 1
+            break
+        
+        elif x[1][3] == "x" and x[2][2] == "x" and x[3][1] == "x":
+            print("Player ONE won.")
+            tie_counter = 1
+            break
+
+        else:
+            continue
+
+    else:
+        print("Player TWO make a move.")
+        print()
+     
+        while True:
+
+            while True:
+                print("Enter X position (1-3):")
+                try:
+                    y_axis = int(input())
+                except ValueError:
+                    y_axis = 0
+
+                if y_axis == 1 or y_axis == 2 or y_axis == 3:
+                    break
+                print("That was not correct X position! Try again!")
+
+            while True:
+                print("Enter Y position (1-3):")
+                try:
+                    x_axis = int(input())
+                except ValueError:
+                    x_axis = 0
+
+                if x_axis == 1 or x_axis == 2 or x_axis == 3:
+                    break   
+                print("That was not correct X position! Try again!")
+            
+            if x[x_axis][y_axis] == '_':
+                x[x_axis][y_axis] = 'o'
+                break
+            print()
+            print("This position has already been taken, choose another position.")
+            print_stuff.print_field(x)
+
+        print_stuff.print_field(x)
+
+        # victory logic for columns -----------------------------------
+        if x[1][1] == "o" and x[2][1] == "o" and x[3][1] == "o":
+            print("Player TWO won.")
+            tie_counter = 1
+            break
+        
+        elif x[1][2] == "o" and x[2][2] == "o" and x[3][2] == "o":
+            print("Player TWO won.")
+            tie_counter = 1
+            break
+
+        elif x[1][3] == "o" and x[2][3] == "o" and x[3][3] == "o":
+            print("Player TWO won.")
+            tie_counter = 1
+            break
+
+        # victory logic for rows --------------------------------------
+        if x[1][1] == "o" and x[1][2] == "o" and x[1][3] == "o":
+            print("Player TWO won.")
+            tie_counter = 1
+            break
+        
+        elif x[2][1] == "o" and x[2][2] == "o" and x[2][3] == "o":
+            print("Player TWO won.")
+            tie_counter = 1
+            break
+
+        elif x[3][1] == "o" and x[3][2] == "o" and x[3][3] == "o":
+            print("Player TWO won.")
+            tie_counter = 1
+            break
+
+        # victory logic for diagonal ---------------------------------
+        if x[1][1] == "o" and x[2][2] == "o" and x[3][3] == "o":
+            print("Player TWO won.")
+            tie_counter = 1
+            break
+        
+        elif x[1][3] == "o" and x[2][2] == "o" and x[3][1] == "o":
+            print("Player TWO won.")
+            tie_counter = 1
+            break
+
+        else:
+            continue
+
+if tie_counter == 0:
+    print("It's a tie!")
